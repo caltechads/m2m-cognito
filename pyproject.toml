@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "m2m-cognito"
+version = "0.1.0"
+description = "Machine-to-machine AWS Cognito OAuth2 client credentials and access token validation."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Caltech IMSS ADS", email = "imss-ads-staff@caltech.edu"}
+]
+license = {file = "LICENSE.txt"}
+keywords = ["aws", "cognito", "oauth2", "client credentials", "access token validation"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15"
+]
+
+dependencies = [
+    "dotenv>=0.9.9",
+    "pyjwt[crypto]>=2.12.1",
+    "requests>=2.33.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["m2m_cognito"]
