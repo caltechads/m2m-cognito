@@ -32,6 +32,9 @@ dependencies = [
     "requests>=2.33.1",
 ]
 
+[project.urls]
+Homepage = "https://github.com/caltechads/m2m-cognito"
+
 [tool.hatch.build.targets.wheel]
 packages = ["m2m_cognito"]
 
