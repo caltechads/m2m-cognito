@@ -12,7 +12,7 @@ version:
 	@echo $(VERSION)
 
 dist: clean
-	@python -m build
+	@hatch build
 
 release: dist
 	@bin/release.sh
@@ -39,8 +39,7 @@ check-clean:
 _release: compile check-branch check-clean
 	@echo "Releasing $(BUMP) version"
 	@bump-my-version bump "$(BUMP)"
-	@hatch build
-	@bin/release.sh
+	${MAKE} release
 
 # --- Explicit release targets (better tab-complete & discoverability) ---
 release-dev:
