@@ -9,7 +9,7 @@
 
 ## Installation
 
-From [PyPI](https://pypi.org/project/m2m-cognito/) (when published):
+From [PyPI](https://pypi.org/project/m2m-cognito/):
 
 ```bash
 pip install m2m-cognito
