@@ -39,6 +39,7 @@ check-clean:
 _release: compile check-branch check-clean
 	@echo "Releasing $(BUMP) version"
 	@bump-my-version bump "$(BUMP)"
+	@python -m build
 	@bin/release.sh
 
 # --- Explicit release targets (better tab-complete & discoverability) ---
