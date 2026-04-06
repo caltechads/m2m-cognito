@@ -19,3 +19,37 @@ release: dist
 
 compile: uv.lock
 	@uv pip compile --group test pyproject.toml -o requirements.txt
+
+.PHONY: check-branch check-clean _release \
+        release-dev release-patch release-minor release-major
+
+# Allow overriding the main branch (defaults to master)
+MAIN_BRANCH ?= master
+
+# --- Gate checks ---
+check-branch:
+	@branch="$$(git rev-parse --abbrev-ref HEAD)"; \
+	[[ "$$branch" == "$(MAIN_BRANCH)" ]] || { echo "You're not on $(MAIN_BRANCH); aborting."; exit 1; }
+
+check-clean:
+	@[[ -z "$$(git status --untracked-files=no --porcelain)" ]] || { echo "You have uncommitted changes; aborting."; exit 1; }
+
+# --- Shared release pipeline ---
+# Expects BUMP=dev|patch|minor|major
+_release: compile check-branch check-clean
+	@echo "Releasing $(BUMP) version"
+	@bump-my-version "$(BUMP)"
+	@bin/release.sh
+
+# --- Explicit release targets (better tab-complete & discoverability) ---
+release-dev:
+	$(MAKE) _release BUMP=dev
+
+release-patch:
+	$(MAKE) _release BUMP=patch
+
+release-minor:
+	$(MAKE) _release BUMP=minor
+
+release-major:
+	$(MAKE) _release BUMP=major
