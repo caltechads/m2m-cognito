@@ -1,5 +1,7 @@
 """Machine-to-machine Amazon Cognito OAuth2 client credentials and token validation."""
 
+__version__ = "0.1.0"
+
 from m2m_cognito.client import CognitoM2MClient, TokenResponse
 from m2m_cognito.exceptions import (
     CognitoTokenRequestError,
