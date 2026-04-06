@@ -18,7 +18,7 @@ release: dist
 	@bin/release.sh
 
 compile: uv.lock
-	@uv pip compile --group test pyproject.toml -o requirements.txt
+	@uv pip compile pyproject.toml -o requirements.txt
 
 .PHONY: check-branch check-clean _release \
         release-dev release-patch release-minor release-major
