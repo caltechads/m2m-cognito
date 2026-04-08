@@ -32,6 +32,27 @@ dependencies = [
     "requests>=2.33.1",
 ]
 
+[tool.uv]
+default-groups = ["docs", "test"]
+
+[dependency-groups]
+docs = [
+  "sphinx<7",
+  "sphinx_rtd_theme == 2.0.0",
+  "sphinxcontrib-images >= 0.9.4",
+  "autodoc_pydantic >= 2.0.0",
+  "diagrams >= 0.23.3",
+  "setuptools>=75.1.0",
+]
+test = [
+  "pytest>=7.4.0",
+  "pytest-cov >= 4.1.0",
+  "pytest-mock >= 3.10.0",
+  "pytest-xdist >= 3.4.0",
+  "pytest-benchmark >= 3.4.1",
+]
+
+
 [project.urls]
 Homepage = "https://github.com/caltechads/m2m-cognito"
 
@@ -41,7 +62,7 @@ packages = ["m2m_cognito"]
 [tool.bumpversion]
 current_version = "0.1.5"
 tag = true
-tag_name = "v{new_version}"
+tag_name = "{new_version}"
 commit = true
 message = "Bump version: {current_version} -> {new_version}"
 
@@ -52,4 +73,21 @@ replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
 filename = "m2m_cognito/__init__.py"
+
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py", "_*_tests.py"]
+addopts = [
+    "--reuse-db",
+    "--nomigrations",
+    "--strict-markers",
+    "--cov=ledger",
+    "--cov-report=html:reports/coverage",
+    "--cov-report=term-missing",
+    "--cov-branch"
+]
+testpaths = ["ledger/tests"]
+env = [
+    "TESTING=True",
+    "DJANGO_SECRET_KEY=test-secret-key",
+]
 

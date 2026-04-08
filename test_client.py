@@ -12,7 +12,7 @@ load_dotenv()
 TOKEN_URL = os.getenv("COGNITO_TOKEN_URL")
 CLIENT_ID = os.getenv("COGNITO_APP_CLIENT_ID")
 CLIENT_SECRET = os.getenv("COGNITO_CLIENT_SECRET")
-SCOPES = [os.getenv("COGNITO_REQUIRED_SCOPE")]
+SCOPES = os.getenv("COGNITO_REQUIRED_SCOPE").split(",")
 
 
 def main():

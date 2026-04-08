@@ -6,8 +6,16 @@ dist/
 wheels/
 *.egg-info
 
+# Coverage reports
+reports
+
 # Virtual environments
 .venv
 
 # Environment variables
 .env
+
+# IDEs
+.vscode
+.idea
+.cursor
