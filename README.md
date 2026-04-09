@@ -19,16 +19,6 @@ pip install m2m-cognito
 uv add m2m-cognito
 ```
 
-From a local checkout of this repository (editable install):
-
-```bash
-pip install -e .
-```
-
-```bash
-uv add --editable .
-```
-
 The **import package** name is `m2m_cognito` (underscore); the **distribution** name on PyPI is `m2m-cognito` (hyphen).
 
 ## Usage
